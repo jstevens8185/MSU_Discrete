@@ -1,7 +1,37 @@
+/****************************************************
+ *  Author:           Jered Stevens
+ *
+ *  Course:         Discrete Structures
+ *                  MWF 10AM
+ *                  Stringfellow
+ *
+ *  File:           BitTable.cpp
+ *
+ *  Description:    This is the implementation file
+ *                  to be used in conjunction with  
+ *                  BitTable.h.
+ * 
+ *  Date:           09/17/22
+ ***************************************************/
 #include "BitTable.h"
 
 const unsigned short int zero = 0;
 const unsigned short int one = 1;
+
+/****************************************************************
+ *          Open Files Function
+ *  Name:   openFiles(ifstream&, ofStream&)
+ * 
+ *  Args:   ifstream& infile, ofstream& outfile
+ * 
+ *  Rtrn:   void
+ * 
+ *  Func:   Opens input and output files of users choice
+ * 
+ *  Logic:  Declare char arrays to hold user specified
+ *          input and output file names. Get names from user.
+ *          Open files
+ ****************************************************************/
 
 void openFiles(ifstream& infile, ofstream& outfile)
 {
@@ -17,6 +47,22 @@ void openFiles(ifstream& infile, ofstream& outfile)
     //outfile.open("out.txt");
 }
 
+/****************************************************************
+ *          Create Bitwise Table Function
+ *  Name:   createBitwiseTable(int, int)
+ *
+ *  Args:   int rowCount, int columnCount
+ *
+ *  Rtrn:   unsigned short int**&
+ *
+ *  Func:   Creates a 2D array to hold integers that will
+ *          later be used in bitwise operations.
+ *
+ *  Logic:  Create an array of int*. Loop through array to
+ *          create another array from each element of first
+ *          array.
+ ****************************************************************/
+
 unsigned short int**& createBitwiseTable(int rowCount, int columnCount) {
     //create 2d array with rowCount rows and columnCount columns
     unsigned short int** dataTable = new unsigned short int* [rowCount];
@@ -26,6 +72,25 @@ unsigned short int**& createBitwiseTable(int rowCount, int columnCount) {
 
     return dataTable;
 };
+
+
+/****************************************************************
+ *          Populate Bitwise Table 1 Function
+ *  Name:   populateBitwiseTable1(ifstream&, int, int, unsigned short int**&)
+ *
+ *  Args:   ifstream& input, int rowCount, int columnCount, 
+ *          unsigned short int**& dataTable
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Fills first data table with basic truth table, then
+ *          reads input from file to perform more bitwise operations
+ *          on other numbers from file
+ *
+ *  Logic:  Hard code basic truth table. Read numbers into first
+ *          2 columns of table. Loop through each row and perform
+ *          bitwise operations on the numbers in the first 2 columns.
+ ****************************************************************/
 
 void populateBitwiseTable1(ifstream& input, int rowCount, int columnCount, unsigned short int**& dataTable) {
 
@@ -39,14 +104,11 @@ void populateBitwiseTable1(ifstream& input, int rowCount, int columnCount, unsig
 
 
     ////fill first 2 columns with input values
-
     for (int i = 4; i < rowCount; i++) {
         input >> temp1;
         input >> temp2;
         dataTable[i][0] = temp1;
         dataTable[i][1] = temp2;
-        //cout << setw(8) << dataTable[i][0];
-        //cout << setw(8) << dataTable[i][1] << endl;
     }
 
     //assign truth table ops
@@ -64,6 +126,19 @@ void populateBitwiseTable1(ifstream& input, int rowCount, int columnCount, unsig
     }
 };
 
+/****************************************************************
+ *          Destroy Bitwise Table Function
+ *  Name:   destroyBitwiseTable(unsigned short int**&, int)
+ *
+ *  Args:   unsigned short int**& bitTable, int rowCount
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Frees memory taken from the bitwise table arrays
+ *
+ *  Logic:  Loop through each element and delete
+ ****************************************************************/
+
 void destroyBitwiseTable(unsigned short int**& bitTable, int rowCount) {
 
     for (int i = 0; i < rowCount; i++)
@@ -72,6 +147,21 @@ void destroyBitwiseTable(unsigned short int**& bitTable, int rowCount) {
     }
     delete[] bitTable;
 };
+
+/****************************************************************
+ *          Print Bitwise Table 1 Function
+ *  Name:   printBitwiseTable1(ofstream&, unsigned short int**&, int, int)
+ *
+ *  Args:   ofstream& output, unsigned short int**& dataTable, 
+ *          int rowCount, int columnCount
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Prints contents of the first bitwise table
+ *
+ *  Logic:  Print top of table to know which functions were 
+ *          performed. Use 2 for loops to print contents of table.
+ ****************************************************************/
 
 void printBitwiseTable1(ofstream& output, unsigned short int**& dataTable, int rowCount, int columnCount) {
     //Create top row of table
@@ -93,6 +183,21 @@ void printBitwiseTable1(ofstream& output, unsigned short int**& dataTable, int r
     }
 };
 
+/****************************************************************
+ *          Initialize Bitwise Table Function
+ *  Name:   initializeBitwiseTable(unsigned short int**&, int, int)
+ *
+ *  Args:   unsigned short int**& dataTable, int rowCount, 
+ *          int columnCount
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Initializes the contents of a bitwise table to -1
+ *
+ *  Logic:  Use 2 for loops to set each element of bitwise
+ *          table to -1
+ ****************************************************************/
+
 void initializeBitwiseTable(unsigned short int**& dataTable, int rowCount, int columnCount) {
     for (int i = 0; i < rowCount; i++) {
         for (int j = 0; j < columnCount; j++) {
@@ -102,6 +207,23 @@ void initializeBitwiseTable(unsigned short int**& dataTable, int rowCount, int c
 
     return;
 };
+
+/****************************************************************
+ *          Populate Bitwise Table 2 Function
+ *  Name:   populateBitwiseTable2(ifstream&, int, int, unsigned short int**&)
+ *
+ *  Args:   ifstream& input, int rowcount, int columnCount, 
+ *          unsigned short int**& dataTable
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Fills bitwise table 2 with values based on input file
+ *
+ *  Logic:  Get operator from input file. Use switch statement
+ *          to determine the next number of reads from file 
+ *          necessary. Read in values and perform necessary
+ *          operations. Save results into bitwise table.
+ ****************************************************************/
 
 void populateBitwiseTable2(ifstream& input, int rowcount, int columnCount, unsigned short int**& dataTable) {
     char _operator = ' ';
@@ -190,6 +312,21 @@ void populateBitwiseTable2(ifstream& input, int rowcount, int columnCount, unsig
         temp1 = temp2 = temp3 = 0;
     };
 };
+
+/****************************************************************
+ *          Print Bitwise Table 2 Function
+ *  Name:   printBitwiseTable2(ofstream&, unsigned short int**&, int, int)
+ *
+ *  Args:   ofstream& output, unsigned short int**& dataTable,
+ *          int rowCount, int columnCount
+ *
+ *  Rtrn:   void
+ *
+ *  Func:   Prints contents of the second bitwise table
+ *
+ *  Logic:  Print top of table to know which functions were
+ *          performed. Use 2 for loops to print contents of table.
+ ****************************************************************/
 
 void printBitwiseTable2(ofstream& output, unsigned short int**& dataTable, int rowCount, int columnCount) {
     //Create top row of table

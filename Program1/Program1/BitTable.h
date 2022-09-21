@@ -1,3 +1,20 @@
+/****************************************************
+ *  Author:           Jered Stevens
+ *
+ *  Course:         Discrete Structures
+ *                  MWF 10AM
+ *                  Stringfellow
+ * 
+ *  File:           BitTable.h
+ *
+ *  Description:    This is the header file for 
+ *                  BitTable.cpp. Include this in
+ *                  your program to use the functions
+ *                  needed to create a 2D array that
+ *                  performs bitwise operations
+ *
+ *  Date:           09/17/22
+ ***************************************************/
 #pragma once
 #include <iomanip>
 #include <iostream>
