@@ -1,0 +1,21 @@
+Jered Stevens
+Discrete Structures - Stringfellow
+Program 2: Sequences
+Date: 10/11/22
+
+
+         n         m       max       sum
+         1        10        20       339
+
+       100       200       125    105976
+
+       210       201        89     97608
+
+       900      1000       174   4444724
+
+      1000      1020       156    189585
+
+        80        75        36      2422
+
+        50         1       112    101440
+
