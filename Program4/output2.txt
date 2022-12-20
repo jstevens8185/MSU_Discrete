@@ -1,0 +1,25 @@
+Name:   Jered Stevens
+Date:   11/29/22
+Course: Discrete Structures
+        Stringfellow
+
+Event #1
+StartTime:1
+Duration:3
+EndTime:4
+
+Event #2
+StartTime:5
+Duration:2
+EndTime:7
+
+Event #3
+StartTime:8
+Duration:3
+EndTime:11
+
+Event #4
+StartTime:12
+Duration:2
+EndTime:14
+
